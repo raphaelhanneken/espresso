@@ -82,7 +82,7 @@ class LoginHelper {
             let resolutionFlags : UInt32 = UInt32(kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes)
             let url = LSSharedFileListItemCopyResolvedURL(item as! LSSharedFileListItem, resolutionFlags, nil).takeRetainedValue() as NSURL
             if url.isEqual(itemURL) {
-                return item as! LSSharedFileListItem
+                return (item as! LSSharedFileListItem)
             }
         }
         
