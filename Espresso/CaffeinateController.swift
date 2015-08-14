@@ -27,40 +27,55 @@
 
 import Foundation
 
+/// Manages the caffeinate task.
 class CaffeinateController: NSObject {
-    var caffeinate: NSTask?
-    var active: Bool?
+    /// Holds the caffeinate task.
+    private var caffeinate: NSTask?
     
-    override init() {
-        super.init()
-    }
+    /// Reference to wether the caffeinate task
+    /// is currently running or not.
+    private var active: Bool?
     
+    /// Launches a new Caffeinate task.
     func launch() {
+        // Create a new task.
         let caffeinate = NSTask()
         
+        // Set the task properties.
         caffeinate.launchPath = "/usr/bin/caffeinate"
         caffeinate.arguments  = ["-dsiu"]
-        caffeinate.launch()
         
+        // Launch the caffeinate task and set active to true.
+        caffeinate.launch()
         active = true
         
+        // Assign the caffeinate property to out caffeinate task.
         self.caffeinate = caffeinate
     }
     
+    /// Terminates the currently running caffeinate task.
     func terminate() {
+        // Unwrap the active caffeinate task...
         guard let caffeinate = caffeinate else {
-            exit(1)
+            // In case caffeinate is nil, we don't have any
+            // task running so just bail out.
+            return
         }
         
+        // Terminate the active caffeinate task.
         caffeinate.terminate()
+        // Set the active indicator to false.
         active = false
     }
     
-    func isActive() -> Bool {
+    // Check if there's already a caffeinate task running.
+    func running() -> Bool {
+        // Unwrap the active property; When nil return false.
         guard let active = self.active else {
             return false
         }
         
+        // Return the unwrapped active property.
         return active
     }
 }
