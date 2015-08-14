@@ -38,13 +38,6 @@ class PreferenceManager {
     /// Holds the user defaults.
     private let userDefaults = NSUserDefaults.standardUserDefaults()
     
-    // Should not be settable but a computed property, that gets defined by wether Espresso
-    // is a login item or not.
-    var launchAtLogin: Int {
-        get           { return userDefaults.integerForKey(launchAtLoginKey) }
-        set(newValue) { userDefaults.setInteger(newValue, forKey: launchAtLoginKey) }
-    }
-    
     /// Determines wether to activate a caffeinate task at launch or not.
     var activateOnLaunch: Int {
         get           { return userDefaults.integerForKey(activateOnLaunchKey) }
@@ -61,15 +54,7 @@ class PreferenceManager {
     /// Register the default preferences
     private func registerDefaultPreferences() {
         // Disable activateOnLaunch
-        var defaults = [activateOnLaunchKey: 0]
-        
-        // Check if Espresso should launch at login
-        if LoginHelper.willLaunchAtLogin(NSBundle.mainBundle().bundleURL) {
-            defaults[launchAtLoginKey] = 1
-        } else {
-            defaults[launchAtLoginKey] = 0
-        }
-        
+        let defaults = [activateOnLaunchKey: 0]
         userDefaults.registerDefaults(defaults)
     }
 }

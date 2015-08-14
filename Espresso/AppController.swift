@@ -63,8 +63,13 @@ class AppController : NSObject {
     /// Do some setup work when launching the app.
     override func awakeFromNib() {
         // Set the menu items to the state, choosen by the user.
-        self.launchAtLogin.state    = prefManager.launchAtLogin
         self.activateOnLaunch.state = prefManager.activateOnLaunch
+        
+        if LoginHelper.willLaunchAtLogin(NSBundle.mainBundle().bundleURL) {
+            self.launchAtLogin.state = NSOnState
+        } else {
+            self.launchAtLogin.state = NSOffState
+        }
         
         // If activate on launch is set, spawn a caffeinate task.
         if self.activateOnLaunch.state == NSOnState {
@@ -146,6 +151,17 @@ class AppController : NSObject {
         }
     }
     
+    /// Toggles the state of sender.
+    ///
+    /// - parameter sender: Menu item to toggle the state.
+    func toggleMenuItemState(sender: NSMenuItem) {
+        if sender.state == NSOnState {
+            sender.state = NSOffState
+        } else {
+            sender.state = NSOnState
+        }
+    }
+    
     /// Let Espresso launch when the user logs in.
     ///
     /// - parameter sender: Menu item that sends the action.
@@ -153,21 +169,14 @@ class AppController : NSObject {
         // Get the bundle url.
         let bundleURL = NSBundle.mainBundle().bundleURL
         
-        // Check wether the should launch at login or not.
-        if self.launchAtLogin.state == NSOnState {
-            // Set the launch at login state to off.
-            self.launchAtLogin.state = NSOffState
-            // Delete Espresso from the login items list.
-            LoginHelper.setLaunchAtLogin(bundleURL, enabled: false)
-        } else {
-            // Set the launch at login state to on.
-            self.launchAtLogin.state = NSOnState
-            // Add Espresso to the login items list.
-            LoginHelper.setLaunchAtLogin(bundleURL, enabled: true)
+        do {
+            // Toggle the launch at login state.
+            try LoginHelper.toggleLaunchAtLogin(bundleURL)
+            // Toggle the menu item state
+            toggleMenuItemState(sender)
+        } catch {
+            print(error)
         }
-        
-        // Save the new state to the user defaults
-        self.prefManager.launchAtLogin = self.launchAtLogin.state
     }
     
     /// Let Espresso spawn a new caffeinate task as soon as 
@@ -175,14 +184,8 @@ class AppController : NSObject {
     ///
     /// - parameter sender: Menu item that sends the action.
     @IBAction func activateOnLaunch(sender: NSMenuItem) {
-        // Check if activate on launch is enabled or not.
-        if self.activateOnLaunch.state == NSOnState {
-            // If activate on launch in enabled, disable...
-            self.activateOnLaunch.state = NSOffState
-        } else {
-            // ...otherwise enable.
-            self.activateOnLaunch.state = NSOnState
-        }
+        // Toggle the menu item state
+        toggleMenuItemState(sender)
         
         // Save the new state to the user defaults
         self.prefManager.activateOnLaunch = self.activateOnLaunch.state
