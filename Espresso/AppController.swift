@@ -133,7 +133,7 @@ class AppController : NSObject {
     func toggleStatus(sender: NSStatusBarButton) {
         // Check wether a caffeinate task is already
         // running or not
-        if caffeinate.isActive() {
+        if caffeinate.running() {
             // Terminate the running caffeinate task.
             caffeinate.terminate()
             // Let the menu bar icon appear disabled.
