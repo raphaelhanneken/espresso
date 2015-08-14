@@ -27,45 +27,53 @@
 
 import Foundation
 
+/// Manages Launch at Login
 class LoginHelper {
     
+    /// Checks if the given bundle will launch at login.
+    ///
+    /// - returns: True when the given bundle will launch at 
+    /// login, false otherwise.
     static func willLaunchAtLogin(itemURL : NSURL) -> Bool {
-        return findItem(itemURL) != nil
+        return (findItem(itemURL) != nil)
     }
     
-    static func setLaunchAtLogin(itemURL: NSURL, enabled: Bool) -> Bool {
-        let loginItems_ = getLoginItems()
-        if loginItems_ == nil {return false}
-        let loginItems = loginItems_!
-        
-        let item = findItem(itemURL)
-        if item != nil && enabled {return true}
-        if item != nil && !enabled {
-            LSSharedFileListItemRemove(loginItems, item)
-            return true
+    /// Removes or adds the given bundle from/to the login items list.
+    /// Throws a GettingLoginItemsFailed error in case getting the
+    /// login items failes.
+    static func toggleLaunchAtLogin(itemURL: NSURL) throws {
+        guard let loginItems = getLoginItems() else {
+            throw LoginHelperError.GettingLoginItemsFailed
         }
         
-        LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst.takeUnretainedValue(), nil, nil, itemURL as CFURL, nil, nil)
-        return true
+        if let item = findItem(itemURL) {
+            LSSharedFileListItemRemove(loginItems, item)
+        } else {
+            LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst.takeUnretainedValue(), nil, nil, itemURL as CFURL, nil, nil)
+        }
     }
     
+    /// Gets the login items of the current user.
+    ///
+    /// - returns: The login items of the current user.
     private static func getLoginItems() -> LSSharedFileList? {
         let allocator   = CFAllocatorGetDefault().takeUnretainedValue()
         let kLoginItems = kLSSharedFileListSessionLoginItems.takeUnretainedValue()
-        let loginItems_ = LSSharedFileListCreate(allocator, kLoginItems, nil)
-        if loginItems_ == nil {
+        
+        guard let loginItems = LSSharedFileListCreate(allocator, kLoginItems, nil) else {
             return nil
         }
-        let loginItems = loginItems_.takeRetainedValue()
-        return loginItems
+        
+        return loginItems.takeRetainedValue()
     }
     
+    /// Looks wether or not the given bundle is part of the login item list of the current user.
+    ///
+    /// - returns: The list item of the given bundle if found, otherwise nil.
     private static func findItem(itemURL : NSURL) -> LSSharedFileListItem? {
-        let loginItems_ = getLoginItems()
-        if loginItems_ == nil {
+        guard let loginItems = getLoginItems() else {
             return nil
         }
-        let loginItems = loginItems_!
         
         var seed : UInt32 = 0
         let currentItems  = LSSharedFileListCopySnapshot(loginItems, &seed).takeRetainedValue() as Array
@@ -74,11 +82,15 @@ class LoginHelper {
             let resolutionFlags : UInt32 = UInt32(kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes)
             let url = LSSharedFileListItemCopyResolvedURL(item as! LSSharedFileListItem, resolutionFlags, nil).takeRetainedValue() as NSURL
             if url.isEqual(itemURL) {
-                let result = item as! LSSharedFileListItem
-                return result
+                return item as! LSSharedFileListItem
             }
         }
         
         return nil
     }
+}
+
+/// Error types for the LoginHelper class.
+enum LoginHelperError: ErrorType {
+    case GettingLoginItemsFailed
 }
