@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>SUFeedURL</key>
+	<string>https://behoernchen.github.io/espresso/sparkle/EspressoAppcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>CFBundleExecutable</key>
