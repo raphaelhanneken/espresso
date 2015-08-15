@@ -13,6 +13,7 @@
 		8E20A5E61B7E09E8006819C8 /* CaffeinateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E20A5E51B7E09E8006819C8 /* CaffeinateController.swift */; };
 		8E495B711B7FF46200A93A46 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E495B701B7FF46200A93A46 /* Sparkle.framework */; };
 		8E495B731B7FF47700A93A46 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8E495B701B7FF46200A93A46 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8E495B751B7FF6AA00A93A46 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 8E495B741B7FF6AA00A93A46 /* dsa_pub.pem */; };
 		8E9EAD501B7CEA7C006FE53F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9EAD4F1B7CEA7C006FE53F /* AppDelegate.swift */; };
 		8E9EAD551B7CEA7C006FE53F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E9EAD531B7CEA7C006FE53F /* MainMenu.xib */; };
 		8E9EAD5F1B7CEAEC006FE53F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E9EAD5E1B7CEAEC006FE53F /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		8E20A5E31B7E004A006819C8 /* PreferenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
 		8E20A5E51B7E09E8006819C8 /* CaffeinateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaffeinateController.swift; sourceTree = "<group>"; };
 		8E495B701B7FF46200A93A46 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		8E495B741B7FF6AA00A93A46 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		8E9EAD4C1B7CEA7C006FE53F /* Espresso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Espresso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9EAD4F1B7CEA7C006FE53F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E9EAD541B7CEA7C006FE53F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				8E9EAD5E1B7CEAEC006FE53F /* Assets.xcassets */,
 				8E9EAD561B7CEA7C006FE53F /* Info.plist */,
+				8E495B741B7FF6AA00A93A46 /* dsa_pub.pem */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E9EAD5F1B7CEAEC006FE53F /* Assets.xcassets in Resources */,
+				8E495B751B7FF6AA00A93A46 /* dsa_pub.pem in Resources */,
 				8E9EAD551B7CEA7C006FE53F /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
