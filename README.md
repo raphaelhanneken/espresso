@@ -19,6 +19,7 @@ Mainly because I like writing Swift apps but also because _[Caffeine](http://lig
 ## Installation ##
 
 You have two options installing Espresso:
+
 1. Download the latest [release](https://github.com/behoernchen/Iconizer/releases) and drop into your Applications folder.
 2. Download the source code and it compile yourself.
 
