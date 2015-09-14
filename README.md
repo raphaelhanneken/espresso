@@ -1,20 +1,20 @@
 # Espresso #
 
-Espresso is a _[Caffeine](http://lightheadsw.com/caffeine/)_ alternative with support for retina displays and the black respectively white menu bar introduced in OS X Yosemite.
+Espresso is a _[Caffeine](http://lightheadsw.com/caffeine/)_ alternative with support for retina displays and the black or white menu bar introduced in OS X Yosemite.
 
 ![Screenshots](screenshot.png)
 
 ## So what exactly is Espresso now? ##
 
-Espresso is a small menu bar utility, that prevents your Mac from sleeping. Imagine watching a movie and your Mac keeps falling asleep over and over again. With Espresso you simply click on the little coffee cup in your menu bar and your Mac will stay awake with you. All night long - or at least until you click that coffee cup again to turn Espresso off.
+Espresso is a small menu bar utility, that prevents your Mac from sleeping. Imagine watching a movie and your Mac keeps falling asleep over and over again. With Espresso you simply click on the little coffee cup in your menu bar and your Mac will stay awake with you. All night long - or at least until you click that cup again to turn Espresso off.
 
 ## How does this work? ##
 
-Espresso simply spawns a small system process called [caffeinate](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html). So, you could say, Espresso is nothing more than a _simple to use_ wrapper for an already existing command line tool.
+Espresso simply spawns a small system process called [caffeinate](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html). So, you could say, Espresso is nothing more than a _simple to use_ wrapper for an already existing tool.
 
 ## Why does this project exist? ##
 
-Mainly because I like writing Swift apps but also because _[Caffeine](http://lightheadsw.com/caffeine/)_ hasn't been updated in a while and it doesn't support Yosemite's black menu bar option. And besides writing Swift code I also like the black menu bar.
+Mainly because I like writing Swift apps but also because _[Caffeine](http://lightheadsw.com/caffeine/)_ hasn't been updated in a while and it doesn't support Yosemite's black menu bar. And besides writing _Swift_ code I also like the black menu bar.
 
 ## Installation ##
 
