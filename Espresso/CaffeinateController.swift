@@ -43,7 +43,7 @@ class CaffeinateController: NSObject {
         
         // Set the task properties.
         caffeinate.launchPath = "/usr/bin/caffeinate"
-        caffeinate.arguments  = ["-dsiu"]
+        caffeinate.arguments  = ["-diu"]
         
         // Launch the caffeinate task and set active to true.
         caffeinate.launch()
