@@ -31,8 +31,6 @@ import Cocoa
 class AppController : NSObject {
     /// Holds the status bar item.
     var statusItem: NSStatusItem!
-    /// Manages the user preferences.
-    var prefManager: PreferenceManager!
     /// Manages the caffeinate task.
     var caffeinate: CaffeinateController!
     
@@ -44,7 +42,7 @@ class AppController : NSObject {
     /// Menu item to activate Espresso at launch
     @IBOutlet weak var activateOnLaunch: NSMenuItem!
     
-    /// Initializes an instance of AppController
+    /// Initializes a new instance of AppController
     ///
     /// - returns: Initialized object of AppController
     override init() {
@@ -53,28 +51,28 @@ class AppController : NSObject {
         super.init()
         
         // Configure the status bar item.
-        self.configureStatusItem()
-        // Init the PreferenceManager for the user defaults.
-        self.prefManager = PreferenceManager()
-        // Init the Controller for the Caffeinate task.
-        self.caffeinate  = CaffeinateController()
+        configureStatusItem()
+        // Init the caffeinate controller.
+        caffeinate = CaffeinateController()
     }
     
     /// Do some setup work when launching the app.
     override func awakeFromNib() {
+        // Init the PreferenceManager to get the user defaults.
+        let prefManager = PreferenceManager()
         // Set the menu items to the state, choosen by the user.
-        self.activateOnLaunch.state = prefManager.activateOnLaunch
+        activateOnLaunch.state = prefManager.activateOnLaunch
         
         if LoginHelper.willLaunchAtLogin(NSBundle.mainBundle().bundleURL) {
-            self.launchAtLogin.state = NSOnState
+            launchAtLogin.state = NSOnState
         } else {
-            self.launchAtLogin.state = NSOffState
+            launchAtLogin.state = NSOffState
         }
         
         // If activate on launch is set, spawn a caffeinate task.
-        if self.activateOnLaunch.state == NSOnState {
-            if let button = self.statusItem.button {
-                self.toggleStatus(button)
+        if activateOnLaunch.state == NSOnState {
+            if let button = statusItem.button {
+                toggleStatus(button)
             }
         }
     }
@@ -122,9 +120,9 @@ class AppController : NSObject {
         // Highlight the status bar item while the menu is open.
         sender.highlighted = true
         // Unwrap the status bar item.
-        if let statusItem = self.statusItem {
+        if let statusItem = statusItem {
             // Display the app menu.
-            statusItem.popUpStatusItemMenu(self.menu)
+            statusItem.popUpStatusItemMenu(menu)
         }
         // Disable the highlighting of the status bar item when
         // the app menu closes.
@@ -168,7 +166,6 @@ class AppController : NSObject {
     @IBAction func launchAtLogin(sender: NSMenuItem) {
         // Get the bundle url.
         let bundleURL = NSBundle.mainBundle().bundleURL
-        
         do {
             // Toggle the launch at login state.
             try LoginHelper.toggleLaunchAtLogin(bundleURL)
@@ -186,9 +183,6 @@ class AppController : NSObject {
     @IBAction func activateOnLaunch(sender: NSMenuItem) {
         // Toggle the menu item state
         toggleMenuItemState(sender)
-        
-        // Save the new state to the user defaults
-        self.prefManager.activateOnLaunch = self.activateOnLaunch.state
     }
     
     /// Terminates Espresso.
@@ -196,8 +190,15 @@ class AppController : NSObject {
     /// - parameter sender: Object that wants Espresso to quit :(
     @IBAction func terminate(sender: AnyObject) {
         // Terminate the caffeinate task, in case we're running any.
-        // Somehow Swift doesn't manage this itself. Dunno why.
-        caffeinate.terminate()
+        if let caffeinate = self.caffeinate {
+            caffeinate.terminate()
+        }
+
+        // Init the PreferenceManager to save the user defaults.
+        let prefManager = PreferenceManager()
+        // Save the new state to the user defaults
+        prefManager.activateOnLaunch = activateOnLaunch.state
+
         // Send the terminate message.
         NSApplication.sharedApplication().terminate(self)
     }
