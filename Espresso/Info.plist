@@ -60,7 +60,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>https://raphaelhanneken.github.io/espresso/sparkle/EspressoAppcast.xml</string>
+	<string>https://raphaelhanneken.github.io/espresso/sparkle/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 </dict>
