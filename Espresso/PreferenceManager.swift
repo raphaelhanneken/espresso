@@ -35,26 +35,24 @@ private let activateOnLaunchKey = "ActivateOnLaunch"
 
 /// Manages the user defaults for Espresso
 class PreferenceManager {
-    /// Holds the user defaults.
-    private let userDefaults = NSUserDefaults.standardUserDefaults()
-    
-    /// Determines wether to activate a caffeinate task at launch or not.
-    var activateOnLaunch: Int {
-        get           { return userDefaults.integerForKey(activateOnLaunchKey) }
-        set(newValue) { userDefaults.setInteger(newValue, forKey: activateOnLaunchKey) }
-    }
-    
-    /// Initializes the Preference Manager.
-    ///
-    /// - returns: The initialized PreferenceManager object.
-    init() {
-        registerDefaultPreferences()
-    }
-    
-    /// Register the default preferences
-    private func registerDefaultPreferences() {
-        // Disable activateOnLaunch
-        let defaults = [activateOnLaunchKey: 0]
-        userDefaults.registerDefaults(defaults)
-    }
+  /// Holds the user defaults.
+  private let userDefaults = NSUserDefaults.standardUserDefaults()
+
+  /// Determines wether to activate a caffeinate task at launch or not.
+  var activateOnLaunch: Int {
+    get { return userDefaults.integerForKey(activateOnLaunchKey) }
+    set(newValue) { userDefaults.setInteger(newValue, forKey: activateOnLaunchKey) }
+  }
+
+
+  init() {
+    registerDefaultPreferences()
+  }
+
+  /// Register the default preferences
+  private func registerDefaultPreferences() {
+    // Disable activateOnLaunch
+    let defaults = [activateOnLaunchKey: 0]
+    userDefaults.registerDefaults(defaults)
+  }
 }

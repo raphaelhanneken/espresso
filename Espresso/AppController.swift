@@ -28,178 +28,178 @@
 import Cocoa
 
 /// Main Controller for Espresso.
-class AppController : NSObject {
-    /// Holds the status bar item.
-    var statusItem: NSStatusItem!
-    /// Manages the caffeinate task.
-    var caffeinate: CaffeinateController!
-    
-    /// Holds the menu item.
-    @IBOutlet weak var menu: NSMenu!
-    
-    /// Menu item to launch Espresso at login
-    @IBOutlet weak var launchAtLogin: NSMenuItem!
-    /// Menu item to activate Espresso at launch
-    @IBOutlet weak var activateOnLaunch: NSMenuItem!
-    
-    /// Initializes a new instance of AppController
-    ///
-    /// - returns: Initialized object of AppController
-    override init() {
-        // Make sure everything is set up properly before
-        // initializing the class specific properties.
-        super.init()
-        
-        // Configure the status bar item.
-        configureStatusItem()
-        // Init the caffeinate controller.
-        caffeinate = CaffeinateController()
-    }
-    
-    /// Do some setup work when launching the app.
-    override func awakeFromNib() {
-        // Init the PreferenceManager to get the user defaults.
-        let prefManager = PreferenceManager()
-        // Set the menu items to the state, choosen by the user.
-        activateOnLaunch.state = prefManager.activateOnLaunch
-        
-        if LoginHelper.willLaunchAtLogin(NSBundle.mainBundle().bundleURL) {
-            launchAtLogin.state = NSOnState
-        } else {
-            launchAtLogin.state = NSOffState
-        }
-        
-        // If activate on launch is set, spawn a caffeinate task.
-        if activateOnLaunch.state == NSOnState {
-            if let button = statusItem.button {
-                toggleStatus(button)
-            }
-        }
-    }
-    
-    /// Configure the status bar item.
-    func configureStatusItem() {
-        // Get a status bar item of variable length.
-        let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
-        
-        // Set the status bar item image.
-        statusItem.image = NSImage(named: "Cup")
-        
-        // Define the status bar item to represent a template, to
-        // enable automatic switching between the black and white menu bar.
-        if let img = statusItem.image {
-            img.template = true
-        }
-        
-        // Set the button properties of the status bar item.
-        if let statusBtn = statusItem.button {
-            // Define the target of the click actions.
-            statusBtn.target = self
-            // Define the left click action.
-            statusBtn.action = Selector("toggleStatus:")
-            // Set the status items button to appear disabled
-            // (transculant appearance)
-            statusBtn.appearsDisabled = true
-            
-            // Define a right click action.
-            NSEvent.addLocalMonitorForEventsMatchingMask(.RightMouseUpMask) { (incomingEvent: NSEvent) -> NSEvent? in
-                // Call displayMenu: on right click.
-                self.displayMenu(statusBtn)
-                return incomingEvent
-            }
-        }
-        
-        // Set the statusItem property.
-        self.statusItem = statusItem
-    }
-    
-    /// Display the app menu.
-    ///
-    /// - parameter sender: Status bar button that sends the action.
-    func displayMenu(sender: NSStatusBarButton) {
-        // Highlight the status bar item while the menu is open.
-        sender.highlighted = true
-        // Unwrap the status bar item.
-        if let statusItem = statusItem {
-            // Display the app menu.
-            statusItem.popUpStatusItemMenu(menu)
-        }
-        // Disable the highlighting of the status bar item when
-        // the app menu closes.
-        sender.highlighted = false
-    }
-    
-    /// Either terminates or launches a caffeinate task, depending
-    /// on whether a task is already running.
-    ///
-    /// - parameter sender: Status bar button that sends the action.
-    func toggleStatus(sender: NSStatusBarButton) {
-        // Check wether a caffeinate task is already
-        // running or not
-        if caffeinate.running() {
-            // Terminate the running caffeinate task.
-            caffeinate.terminate()
-            // Let the menu bar icon appear disabled.
-            sender.appearsDisabled = true
-        } else {
-            // Launch a new caffeinate task.
-            caffeinate.launch()
-            // Let the menu bar icon appea enabled.
-            sender.appearsDisabled = false
-        }
-    }
-    
-    /// Toggles the state of sender.
-    ///
-    /// - parameter sender: Menu item to toggle the state.
-    func toggleMenuItemState(sender: NSMenuItem) {
-        if sender.state == NSOnState {
-            sender.state = NSOffState
-        } else {
-            sender.state = NSOnState
-        }
-    }
-    
-    /// Let Espresso launch when the user logs in.
-    ///
-    /// - parameter sender: Menu item that sends the action.
-    @IBAction func launchAtLogin(sender: NSMenuItem) {
-        // Get the bundle url.
-        let bundleURL = NSBundle.mainBundle().bundleURL
-        do {
-            // Toggle the launch at login state.
-            try LoginHelper.toggleLaunchAtLogin(bundleURL)
-            // Toggle the menu item state
-            toggleMenuItemState(sender)
-        } catch {
-            print(error)
-        }
-    }
-    
-    /// Let Espresso spawn a new caffeinate task as soon as 
-    /// it launches.
-    ///
-    /// - parameter sender: Menu item that sends the action.
-    @IBAction func activateOnLaunch(sender: NSMenuItem) {
-        // Toggle the menu item state
-        toggleMenuItemState(sender)
-    }
-    
-    /// Terminates Espresso.
-    ///
-    /// - parameter sender: Object that wants Espresso to quit :(
-    @IBAction func terminate(sender: AnyObject) {
-        // Terminate the caffeinate task, in case we're running any.
-        if let caffeinate = self.caffeinate {
-            caffeinate.terminate()
-        }
+class AppController: NSObject {
+  /// Holds the status bar item.
+  var statusItem: NSStatusItem!
+  /// Manages the caffeinate task.
+  var caffeinate: CaffeinateController!
 
-        // Init the PreferenceManager to save the user defaults.
-        let prefManager = PreferenceManager()
-        // Save the new state to the user defaults
-        prefManager.activateOnLaunch = activateOnLaunch.state
+  /// Holds the menu item.
+  @IBOutlet weak var menu: NSMenu!
 
-        // Send the terminate message.
-        NSApplication.sharedApplication().terminate(self)
+  /// Menu item to launch Espresso at login
+  @IBOutlet weak var launchAtLogin: NSMenuItem!
+  /// Menu item to activate Espresso at launch
+  @IBOutlet weak var activateOnLaunch: NSMenuItem!
+
+
+  override init() {
+    // Make sure everything is set up properly before
+    // initializing the class specific properties.
+    super.init()
+
+    // Configure the status bar item.
+    configureStatusItem()
+    // Init the caffeinate controller.
+    caffeinate = CaffeinateController()
+  }
+
+  /// Do some setup work when launching the app.
+  override func awakeFromNib() {
+    // Init the PreferenceManager to get the user defaults.
+    let prefManager = PreferenceManager()
+    // Set the menu items to the state, choosen by the user.
+    activateOnLaunch.state = prefManager.activateOnLaunch
+
+    if LoginHelper.willLaunchAtLogin(NSBundle.mainBundle().bundleURL) {
+      launchAtLogin.state = NSOnState
+    } else {
+      launchAtLogin.state = NSOffState
     }
+
+    // If activate on launch is set, spawn a caffeinate task.
+    if activateOnLaunch.state == NSOnState {
+      if let button = statusItem.button {
+        toggleStatus(button)
+      }
+    }
+  }
+
+  /// Configure the status bar item.
+  func configureStatusItem() {
+    // Get a status bar item of variable length.
+    let statusItem = NSStatusBar.systemStatusBar()
+      .statusItemWithLength(NSVariableStatusItemLength)
+
+    // Set the status bar item image.
+    statusItem.image = NSImage(named: "Cup")
+
+    // Define the status bar item to represent a template, to
+    // enable automatic switching between the black and white menu bar.
+    if let img = statusItem.image {
+      img.template = true
+    }
+
+    // Set the button properties of the status bar item.
+    if let statusBtn = statusItem.button {
+      // Define the target of the click actions.
+      statusBtn.target = self
+      // Define the left click action.
+      statusBtn.action = Selector("toggleStatus:")
+      // Set the status items button to appear disabled
+      // (transculant appearance)
+      statusBtn.appearsDisabled = true
+
+      // Define a right click action.
+      NSEvent.addLocalMonitorForEventsMatchingMask(.RightMouseUpMask) {
+        (incomingEvent: NSEvent) -> NSEvent? in
+        // Call displayMenu: on right click.
+        self.displayMenu(statusBtn)
+        return incomingEvent
+      }
+    }
+
+    // Set the statusItem property.
+    self.statusItem = statusItem
+  }
+
+  /// Display the app menu.
+  ///
+  /// - parameter sender: Status bar button that sends the action.
+  func displayMenu(sender: NSStatusBarButton) {
+    // Highlight the status bar item while the menu is open.
+    sender.highlighted = true
+    // Unwrap the status bar item.
+    if let statusItem = statusItem {
+      // Display the app menu.
+      statusItem.popUpStatusItemMenu(menu)
+    }
+    // Disable the highlighting of the status bar item when
+    // the app menu closes.
+    sender.highlighted = false
+  }
+
+  /// Either terminates or launches a caffeinate task, depending
+  /// on whether a task is already running.
+  ///
+  /// - parameter sender: Status bar button that sends the action.
+  func toggleStatus(sender: NSStatusBarButton) {
+    // Check wether a caffeinate task is already
+    // running or not
+    if caffeinate.running() {
+      // Terminate the running caffeinate task.
+      caffeinate.terminate()
+      // Let the menu bar icon appear disabled.
+      sender.appearsDisabled = true
+    } else {
+      // Launch a new caffeinate task.
+      caffeinate.launch()
+      // Let the menu bar icon appea enabled.
+      sender.appearsDisabled = false
+    }
+  }
+
+  /// Toggles the state of sender.
+  ///
+  /// - parameter sender: Menu item to toggle the state.
+  func toggleMenuItemState(sender: NSMenuItem) {
+    if sender.state == NSOnState {
+      sender.state = NSOffState
+    } else {
+      sender.state = NSOnState
+    }
+  }
+
+  /// Let Espresso launch when the user logs in.
+  ///
+  /// - parameter sender: Menu item that sends the action.
+  @IBAction func launchAtLogin(sender: NSMenuItem) {
+    // Get the bundle url.
+    let bundleURL = NSBundle.mainBundle().bundleURL
+    do {
+      // Toggle the launch at login state.
+      try LoginHelper.toggleLaunchAtLogin(bundleURL)
+      // Toggle the menu item state
+      toggleMenuItemState(sender)
+    } catch {
+      print(error)
+    }
+  }
+
+  /// Let Espresso spawn a new caffeinate task as soon as
+  /// it launches.
+  ///
+  /// - parameter sender: Menu item that sends the action.
+  @IBAction func activateOnLaunch(sender: NSMenuItem) {
+    // Toggle the menu item state
+    toggleMenuItemState(sender)
+  }
+
+  /// Terminates Espresso.
+  ///
+  /// - parameter sender: Object that wants Espresso to quit
+  @IBAction func terminate(sender: AnyObject) {
+    // Terminate the caffeinate task, in case we're running any.
+    if let caffeinate = self.caffeinate {
+      caffeinate.terminate()
+    }
+
+    // Init the PreferenceManager to save the user defaults.
+    let prefManager = PreferenceManager()
+    // Save the new state to the user defaults
+    prefManager.activateOnLaunch = activateOnLaunch.state
+
+    // Send the terminate message.
+    NSApplication.sharedApplication().terminate(self)
+  }
 }
