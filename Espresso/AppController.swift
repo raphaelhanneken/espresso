@@ -95,7 +95,7 @@ class AppController: NSObject {
       // Define the target of the click actions.
       statusBtn.target = self
       // Define the left click action.
-      statusBtn.action = Selector("toggleStatus:")
+      statusBtn.action = #selector(AppController.toggleStatus(_:))
       // Set the status items button to appear disabled
       // (transculant appearance)
       statusBtn.appearsDisabled = true
