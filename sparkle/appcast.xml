@@ -7,6 +7,26 @@
         <language>en</language>
 
         <item>
+          <title>Espresso v1.1</title>
+          <description>
+            <![CDATA[
+            <p>
+              Rebuild with Swift 2.1 and Xcode 7.3.
+            </p>
+            ]]>
+          </description>
+          <pubDate>Wed, 23 Mar 2016 15:00:00 +0100</pubDate>
+          <sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
+          <enclosure
+            url="https://github.com/raphaelhanneken/espresso/releases/download/1.1/Espresso.dmg"
+            sparkle:version="41"
+            sparkle:shortVersionString="1.1"
+            sparkle:dsaSignature="MCwCFBSTN3rRTVDUVlyPwElLHF5Y1W1RAhQ7ZUfB6tOfTsi6BaHKkvd1BfKpmA=="
+            length="5429781"
+            type="application/octet-stream" />
+        </item>
+
+        <item>
           <title>Espresso v1.0.3</title>
           <description>
             <![CDATA[
