@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>Espresso Changelog</title>
+        <link>http://raphaelhanneken.github.io/espresso/sparkle/appcast.xml</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+
+        <item>
+          <title>Espresso v1.0.3</title>
+          <description>
+            <![CDATA[
+            <p>
+              Rebuild with Swift 2.1.1 and Xcode 7.2 (7C68).
+            </p>
+            ]]>
+          </description>
+          <pubDate>Thu, 10 Dec 2015 17:00:00 +0100</pubDate>
+          <sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
+          <enclosure
+            url="https://github.com/raphaelhanneken/espresso/releases/download/1.0.3/Espresso.dmg"
+            sparkle:version="34"
+            sparkle:shortVersionString="1.0"
+            sparkle:dsaSignature="MCwCFBA0BadrCZYrOPV2IJ/0bVKv5jn9AhR7wYF8mkXjKBlHK6FlKgizPOOFCw=="
+            length="5380359"
+            type="application/octet-stream" />
+        </item>
+
+        <item>
+          <title>Espresso v1.0.2</title>
+          <description>
+            <![CDATA[
+            <p>
+              Improved App Transport Security.
+            </p>
+            ]]>
+          </description>
+          <pubDate>Thu, 1 Oct 2015 17:00:00 +0100</pubDate>
+          <sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
+          <enclosure
+            url="https://github.com/raphaelhanneken/espresso/releases/download/1.0.2/Espresso.dmg"
+            sparkle:version="30"
+            sparkle:shortVersionString="1.0"
+            sparkle:dsaSignature="MCwCFB5uepj03PvR2AQZsSluLBRrizhPAhRLbdRykiYLs0hdveLk2/NlXmL5uA=="
+            length="5380600"
+            type="application/octet-stream" />
+        </item>
+    </channel>
+</rss>
