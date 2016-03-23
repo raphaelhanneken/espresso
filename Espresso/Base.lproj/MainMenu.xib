@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8152.3" systemVersion="15A243d" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8152.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -19,10 +19,10 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Espresso" systemMenu="apple" id="uQy-DD-JDr">
                         <items>
-                            <menuItem title="About Espresso" id="5kV-Vb-QxS">
+                            <menuItem title="About Espresso" id="2Se-Sw-mSe">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
+                                    <action selector="orderFrontStandardAboutPanel:" target="-1" id="ugE-US-u8W"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
@@ -132,11 +132,7 @@
                                     <action selector="undo:" target="-1" id="M6e-cu-g7V"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Redo" keyEquivalent="Z" id="6dh-zS-Vam">
-                                <connections>
-                                    <action selector="redo:" target="-1" id="oIA-Rs-6OD"/>
-                                </connections>
-                            </menuItem>
+                            <menuItem title="Redo" keyEquivalent="Z" id="6dh-zS-Vam"/>
                             <menuItem isSeparatorItem="YES" id="WRV-NI-Exz"/>
                             <menuItem title="Cut" keyEquivalent="x" id="uRl-iY-unG">
                                 <connections>
@@ -201,11 +197,7 @@
                                                 <action selector="performFindPanelAction:" target="-1" id="U76-nv-p5D"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Jump to Selection" keyEquivalent="j" id="S0p-oC-mLd">
-                                            <connections>
-                                                <action selector="centerSelectionInVisibleArea:" target="-1" id="IOG-6D-g5B"/>
-                                            </connections>
-                                        </menuItem>
+                                        <menuItem title="Jump to Selection" keyEquivalent="j" id="S0p-oC-mLd"/>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -301,21 +293,12 @@
                                     <items>
                                         <menuItem title="Make Upper Case" id="vmV-6d-7jI">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="uppercaseWord:" target="-1" id="sPh-Tk-edu"/>
-                                            </connections>
                                         </menuItem>
                                         <menuItem title="Make Lower Case" id="d9M-CD-aMd">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="lowercaseWord:" target="-1" id="iUZ-b5-hil"/>
-                                            </connections>
                                         </menuItem>
                                         <menuItem title="Capitalize" id="UEZ-Bs-lqG">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="capitalizeWord:" target="-1" id="26H-TL-nsh"/>
-                                            </connections>
                                         </menuItem>
                                     </items>
                                 </menu>
@@ -533,23 +516,14 @@
                                                     <menuItem id="YGs-j5-SAR">
                                                         <string key="title">	Default</string>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="makeBaseWritingDirectionNatural:" target="-1" id="qtV-5e-UBP"/>
-                                                        </connections>
                                                     </menuItem>
                                                     <menuItem id="Lbh-J2-qVU">
                                                         <string key="title">	Left to Right</string>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="makeBaseWritingDirectionLeftToRight:" target="-1" id="S0X-9S-QSf"/>
-                                                        </connections>
                                                     </menuItem>
                                                     <menuItem id="jFq-tB-4Kx">
                                                         <string key="title">	Right to Left</string>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="makeBaseWritingDirectionRightToLeft:" target="-1" id="5fk-qB-AqJ"/>
-                                                        </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="swp-gr-a21"/>
                                                     <menuItem title="Selection" enabled="NO" id="cqv-fj-IhA">
@@ -558,23 +532,14 @@
                                                     <menuItem id="Nop-cj-93Q">
                                                         <string key="title">	Default</string>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="makeTextWritingDirectionNatural:" target="-1" id="lPI-Se-ZHp"/>
-                                                        </connections>
                                                     </menuItem>
                                                     <menuItem id="BgM-ve-c93">
                                                         <string key="title">	Left to Right</string>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="makeTextWritingDirectionLeftToRight:" target="-1" id="caW-Bv-w94"/>
-                                                        </connections>
                                                     </menuItem>
                                                     <menuItem id="RB4-Sm-HuC">
                                                         <string key="title">	Right to Left</string>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="makeTextWritingDirectionRightToLeft:" target="-1" id="EXD-6r-ZUu"/>
-                                                        </connections>
                                                     </menuItem>
                                                 </items>
                                             </menu>
@@ -677,10 +642,10 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="N5X-SA-Oor"/>
-                <menuItem title="About" id="FcU-5B-3cZ">
+                <menuItem title="About Espresso" id="5kV-Vb-QxS">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="orderFrontStandardAboutPanel:" target="-1" id="QKc-0g-eBF"/>
+                        <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Check for Updates..." id="epU-p7-RBx">

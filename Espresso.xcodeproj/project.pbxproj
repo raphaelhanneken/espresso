@@ -317,7 +317,7 @@
 				INFOPLIST_FILE = Espresso/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_LDFLAGS = "-Wl,-rpath,@loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.behoernchen.Espresso;
+				PRODUCT_BUNDLE_IDENTIFIER = io.raphaelhanneken.espresso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -334,7 +334,7 @@
 				INFOPLIST_FILE = Espresso/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_LDFLAGS = "-Wl,-rpath,@loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.behoernchen.Espresso;
+				PRODUCT_BUNDLE_IDENTIFIER = io.raphaelhanneken.espresso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
