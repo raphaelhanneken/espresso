@@ -7,6 +7,26 @@
         <language>en</language>
 
         <item>
+          <title>Espresso v1.2</title>
+          <description>
+            <![CDATA[
+            <p>
+              Updated to Swift 3.0 syntax. Rebuild with Xcode 8.0 beta 2 (8S162m).
+            </p>
+            ]]>
+          </description>
+          <pubDate>Sun, 10 Jul 2016 12:00:00 +0100</pubDate>
+          <sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
+          <enclosure
+            url="https://github.com/raphaelhanneken/espresso/releases/download/1.2/Espresso.dmg"
+            sparkle:version="43"
+            sparkle:shortVersionString="1.2"
+            sparkle:dsaSignature="MC0CFQCId29bKM3nqLtMFlMC0HHGl+1khAIUTTOIa6WT6XePHcI9U8wSy+vydjc="
+            length="19477544"
+            type="application/octet-stream" />
+        </item>
+
+        <item>
           <title>Espresso v1.1</title>
           <description>
             <![CDATA[
