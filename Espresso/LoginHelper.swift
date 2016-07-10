@@ -34,7 +34,7 @@ class LoginHelper {
   ///
   ///  - parameter itemURL: Bundle url.
   ///  - returns: true, when the supplied bundle launes at login otherwise false.
-  static func willLaunchAtLogin(itemURL: NSURL) -> Bool {
+  static func willLaunchAtLogin(_ itemURL: URL) -> Bool {
     return (findItem(itemURL) != nil)
   }
 
@@ -42,9 +42,9 @@ class LoginHelper {
   ///
   ///  - parameter itemURL: Bundle url.
   ///  - throws: A LoginHelperError with further description.
-  static func toggleLaunchAtLogin(itemURL: NSURL) throws {
+  static func toggleLaunchAtLogin(_ itemURL: URL) throws {
     guard let loginItems = getLoginItems() else {
-      throw LoginHelperError.GettingLoginItemsFailed
+      throw LoginHelperError.gettingLoginItemsFailed
     }
 
     if let item = findItem(itemURL) {
@@ -78,7 +78,7 @@ class LoginHelper {
   ///
   /// - parameter itemURL: Bundle url.
   /// - returns: The list item of the given bundle if found, otherwise nil.
-  private static func findItem(itemURL: NSURL) -> LSSharedFileListItem? {
+  private static func findItem(_ itemURL: URL) -> LSSharedFileListItem? {
     guard let loginItems = getLoginItems() else {
       return nil
     }
@@ -95,9 +95,9 @@ class LoginHelper {
       let resolutionFlags: UInt32 = UInt32(kLSSharedFileListNoUserInteraction
         | kLSSharedFileListDoNotMountVolumes)
       let url = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, nil)
-        .takeRetainedValue() as NSURL
+        .takeRetainedValue() as URL
 
-      if url.isEqual(itemURL) {
+      if url == itemURL {
         return item
       }
     }
@@ -105,6 +105,6 @@ class LoginHelper {
 }
 
 /// Error types for the LoginHelper class.
-enum LoginHelperError: ErrorType {
-  case GettingLoginItemsFailed
+enum LoginHelperError: ErrorProtocol {
+  case gettingLoginItemsFailed
 }

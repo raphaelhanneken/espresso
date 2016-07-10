@@ -30,7 +30,7 @@ import Foundation
 /// Manages the caffeinate task.
 class CaffeinateController: NSObject {
   /// Holds the caffeinate task.
-  private var caffeinate: NSTask?
+  private var caffeinate: Task?
 
   /// Reference to wether the caffeinate task
   /// is currently running or not.
@@ -39,7 +39,7 @@ class CaffeinateController: NSObject {
   /// Launches a new Caffeinate task.
   func launch() {
     // Create a new task.
-    let caffeinate = NSTask()
+    let caffeinate = Task()
 
     // Set the task properties.
     caffeinate.launchPath = "/usr/bin/caffeinate"
