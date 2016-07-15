@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11163.2" systemVersion="16A238m" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11163.2"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -626,9 +626,17 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="16" y="40"/>
         </menu>
         <menu id="q9G-xO-h4p">
             <items>
+                <menuItem title="About Espresso" id="5kV-Vb-QxS">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="U6q-by-Tyg"/>
                 <menuItem title="Launch at Login" id="A9v-mD-elq">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -642,25 +650,20 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="N5X-SA-Oor"/>
-                <menuItem title="About Espresso" id="5kV-Vb-QxS">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
-                    </connections>
-                </menuItem>
                 <menuItem title="Check for Updates..." id="epU-p7-RBx">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="checkForUpdates:" target="SsA-6b-a5w" id="f46-ZA-bZs"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Quit" keyEquivalent="q" id="AV3-Hy-nq6">
+                <menuItem title="Quit" id="AV3-Hy-nq6">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="terminate:" target="jj3-24-S6W" id="jU3-dP-awB"/>
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="364.5" y="168.5"/>
+            <point key="canvasLocation" x="-102" y="160"/>
         </menu>
         <customObject id="jj3-24-S6W" customClass="AppController" customModule="Espresso" customModuleProvider="target">
             <connections>
