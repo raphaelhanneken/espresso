@@ -69,7 +69,7 @@ class CaffeinateController: NSObject {
   }
 
   // Check if there's already a caffeinate task running.
-  func running() -> Bool {
+  func isRunning() -> Bool {
     // Unwrap the active property; When nil return false.
     guard let active = self.active else {
       return false
