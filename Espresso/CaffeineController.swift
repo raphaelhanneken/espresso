@@ -27,6 +27,7 @@
 
 import Foundation
 
+/// Defines the notification key for caffeine task updates.
 let caffeineTaskStatusChangedNotificationKey = "io.raphaelhanneken.espresso.caffeinateTaskStatusChanged"
 
 /// Manages the caffeinate task.
@@ -34,7 +35,7 @@ class CaffeineController {
   /// Holds a reference to the caffeinate task.
   private var caffeine: Task?
 
-  /// Checks if the caffeinate task is currently running.
+  /// Checks whether a caffeinate task is currently running.
   var active: Bool {
     guard let status = caffeine?.isRunning else {
       return false
@@ -81,7 +82,7 @@ class CaffeineController {
     caffeinate.launchPath = "/usr/bin/caffeinate"
     caffeinate.arguments  = ["-diu"]
     caffeinate.launch()
-    // Assign the caffeinate property to out caffeinate task.
+    // Assign the caffeinate property to the new caffeinate task.
     return caffeinate
   }
 }
