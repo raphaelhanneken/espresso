@@ -27,8 +27,9 @@
 
 import Foundation
 
+
 /// Manages Launch at Login
-class LoginHelper {
+final class LoginHelper {
 
   ///  Checks whether the supplied bundle will launch at login.
   ///
@@ -38,25 +39,20 @@ class LoginHelper {
     return (findItem(itemURL) != nil)
   }
 
-  ///  Removes or add the given bundle from/to the login items list.
+  ///  Removes or adds the given bundle from/to the login items list.
   ///
-  ///  - parameter itemURL: Bundle url.
-  ///  - throws: A LoginHelperError with further description.
-  static func toggleLaunchAtLogin(_ itemURL: URL) throws {
+  ///  - parameter itemURL: The Bundle url.
+  ///  - throws:            A LoginHelperError.gettingLoginItemsFailed exception.
+  static func toggleLaunchAtLogin(_ itemURL: URL) {
     guard let loginItems = getLoginItems() else {
-      throw LoginHelperError.gettingLoginItemsFailed
+      return
     }
 
     if let item = findItem(itemURL) {
       LSSharedFileListItemRemove(loginItems, item)
     } else {
-      LSSharedFileListInsertItemURL(loginItems,
-        kLSSharedFileListItemBeforeFirst.takeUnretainedValue(),
-        nil,
-        nil,
-        itemURL as CFURL,
-        nil,
-        nil)
+      LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst.takeUnretainedValue(), nil, nil,
+                                    itemURL as CFURL, nil, nil)
     }
   }
 
@@ -84,27 +80,17 @@ class LoginHelper {
     }
 
     var seed: UInt32 = 0
-    let currentItems  = LSSharedFileListCopySnapshot(loginItems, &seed)
-      .takeRetainedValue() as? Array<LSSharedFileListItem>
-
-    guard let items = currentItems where items.isEmpty == false else {
-      return nil
-    }
-
-    for item in items {
-      let resolutionFlags: UInt32 = UInt32(kLSSharedFileListNoUserInteraction
-        | kLSSharedFileListDoNotMountVolumes)
-      let url = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, nil)
-        .takeRetainedValue() as URL
+    let currentItems: NSArray = LSSharedFileListCopySnapshot(loginItems, &seed).takeRetainedValue()
+    // swiftlint:disable force_cast
+    for item in currentItems as! [LSSharedFileListItem] {
+    // swiftlint:enable  force_cast
+      let resolutionFlags = UInt32(kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes)
+      let url = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, nil).takeRetainedValue() as URL
 
       if url == itemURL {
         return item
       }
     }
+    return nil
   }
-}
-
-/// Error types for the LoginHelper class.
-enum LoginHelperError: ErrorProtocol {
-  case gettingLoginItemsFailed
 }
