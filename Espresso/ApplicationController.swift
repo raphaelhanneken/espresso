@@ -29,21 +29,21 @@ import Cocoa
 
 /// Main Controller for Espresso.
 class ApplicationController: NSObject {
-  /// Holds the status bar item.
+  /// Holds a reference to the status bar item.
   var statusItem: NSStatusItem!
-  /// Manages the caffeinate task.
+  /// Manages the caffeine task.
   var caffeine = CaffeineController()
 
-  /// Holds the menu item.
+  /// Holds a weak reference to the menu item.
   @IBOutlet weak var menu: NSMenu!
 
-
+  /// Initialize the application controller.
   override init() {
     // Make sure everything is set up properly before
     // initializing the class specific properties.
     super.init()
     // Configure the status bar item.
-    configureStatusItem()
+    statusItem = configureStatusItem()
     // Listen for Caffeine notifications.
     NotificationCenter.default.addObserver(self, selector: #selector(ApplicationController.toggleButtonState),
                                            name: Notification.Name(caffeineTaskStatusChangedNotificationKey),
@@ -73,53 +73,37 @@ class ApplicationController: NSObject {
   }
 
   /// Configure the status bar item.
-  func configureStatusItem() {
+  func configureStatusItem() -> NSStatusItem? {
     // Get a status bar item of variable length.
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
-
-    // Set the status bar item image.
-    statusItem.image = NSImage(named: "Cup")
-
-    // Define the status bar item to represent a template, to
-    // enable automatic switching between the black and white menu bar.
-    if let img = statusItem.image {
-      img.isTemplate = true
+    // Get the status item's button.
+    guard let btn = statusItem.button else {
+      return nil
     }
+    // Set the button's image.
+    btn.image = NSImage(named: "Cup")
+    btn.image?.isTemplate = true
 
-    // Set the button properties of the status bar item.
-    if let statusBtn = statusItem.button {
-      // Define the target of the click actions.
-      statusBtn.target = self
-      // Define the left click action.
-      statusBtn.action = #selector(ApplicationController.toggleStatus)
-      // Set the status items button to appear disabled
-      // (transculant appearance)
-      statusBtn.appearsDisabled = true
-
-      // Define a right click action.
-      NSEvent.addLocalMonitorForEvents(matching: .rightMouseUp) {
-        (incomingEvent: NSEvent) -> NSEvent? in
-        // Call displayMenu: on right click.
-        self.displayMenu(statusBtn)
-        return incomingEvent
-      }
-    }
+    // Set the button's properties.
+    btn.target = self
+    btn.action = #selector(ApplicationController.toggleStatus)
+    btn.appearsDisabled = true
 
     // Set the statusItem property.
-    self.statusItem = statusItem
+    return statusItem
   }
 
   /// Display the app menu.
   ///
   /// - parameter sender: Status bar button that sends the action.
   func displayMenu(_ sender: NSStatusBarButton) {
+    guard let itm = statusItem else {
+      return
+    }
     // Highlight the status bar item while the menu is open.
     sender.isHighlighted = true
-    // Unwrap the status bar item.
-    if let statusItem = statusItem {
-      // Display the app menu.
-      statusItem.popUpMenu(menu)
-    }
+    // Display the app menu.
+    statusItem.popUpMenu(menu)
     // Set highlighted to false when the application menu closes.
     sender.isHighlighted = false
   }
