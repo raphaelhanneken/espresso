@@ -44,7 +44,11 @@ class CaffeineController {
 
   /// Launches a new Caffeinate task.
   func caffeinate() {
-    // Set the caffeinate task.
+    // Check that there isn't already a caffeine task running.
+    if let _ = caffeine {
+      return
+    }
+    // Create and launch a new task.
     caffeine = caffeinateTask()
     // Post a notification, that a new task has been started.
     NotificationCenter.default.post(name: Notification.Name(rawValue: caffeineTaskStatusChangedNotificationKey),
@@ -54,11 +58,14 @@ class CaffeineController {
   /// Terminates the currently running caffeinate task.
   func decaffeinate() {
     // Bail out in case there isn't any caffeinate task.
-    guard let caffeinate = caffeine else {
+    guard let caffeine = caffeine else {
       return
     }
-    // Terminate the active caffeinate task.
-    caffeinate.terminate()
+    // Terminate the caffeine task and wait for it to exit.
+    caffeine.terminate()
+    caffeine.waitUntilExit()
+    // Reset.
+    self.caffeine = nil
     // Post a notification, that the caffeinate task has been stopped.
     NotificationCenter.default.post(name: Notification.Name(rawValue: caffeineTaskStatusChangedNotificationKey),
                                     object: nil)
