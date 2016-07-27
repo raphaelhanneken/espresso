@@ -640,7 +640,7 @@
                 <menuItem title="Launch at Login" id="A9v-mD-elq">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <binding destination="JWS-0L-h4Z" name="value" keyPath="values.LaunchAtLogin" id="ilI-E5-1VB"/>
+                        <action selector="toggleLaunchAtLogin:" target="jj3-24-S6W" id="grf-GB-d5t"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Activate on Launch" id="8h1-9l-ls7">
@@ -667,6 +667,7 @@
         </menu>
         <customObject id="jj3-24-S6W" customClass="ApplicationController" customModule="Espresso" customModuleProvider="target">
             <connections>
+                <outlet property="launchAtLogin" destination="A9v-mD-elq" id="c4j-Fc-dtB"/>
                 <outlet property="menu" destination="q9G-xO-h4p" id="WLm-uL-SVb"/>
             </connections>
         </customObject>

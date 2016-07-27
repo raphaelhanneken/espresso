@@ -34,8 +34,10 @@ final class ApplicationController: NSObject {
   /// Manages the caffeine task.
   var caffeine = CaffeineController()
 
-  /// Holds a weak reference to the menu item.
+  /// Holds a weak reference to the application menu.
   @IBOutlet weak var menu: NSMenu!
+  /// Holds a weak reference to the Launch at Login menu item.
+  @IBOutlet weak var launchAtLogin: NSMenuItem!
 
   // MARK: - Methods
 
@@ -59,6 +61,9 @@ final class ApplicationController: NSObject {
     // Check whether the user wants to launch caffeinate automatically.
     if prefs.activateOnLaunch {
       toggleStatus()
+    }
+    if LoginHelper.willLaunchAtLogin(Bundle.main.bundleURL) {
+      launchAtLogin.state = NSOnState
     }
   }
 
@@ -125,6 +130,17 @@ final class ApplicationController: NSObject {
   }
 
   // MARK: - Actions
+
+  @IBAction func toggleLaunchAtLogin(_ sender: AnyObject) {
+    // Toggle the Launch at Login state.
+    LoginHelper.toggleLaunchAtLogin(Bundle.main.bundleURL)
+    // Check whether the user has enabled Launch at Login.
+    if LoginHelper.willLaunchAtLogin(Bundle.main.bundleURL) {
+      launchAtLogin.state = NSOnState
+    } else {
+      launchAtLogin.state = NSOffState
+    }
+  }
 
   /// Terminates Espresso.
   ///
