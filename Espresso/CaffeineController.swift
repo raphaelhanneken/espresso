@@ -27,11 +27,11 @@
 
 import Foundation
 
-/// Defines the notification key for caffeine task updates.
+/// The notification key for caffeine task updates.
 let caffeineTaskStatusChangedNotificationKey = "io.raphaelhanneken.espresso.caffeinateTaskStatusChanged"
 
 /// Manages the caffeinate task.
-class CaffeineController {
+final class CaffeineController {
   /// Holds a reference to the caffeinate task.
   private var caffeine: Task?
 
@@ -58,7 +58,7 @@ class CaffeineController {
 
   /// Terminates the currently running caffeinate task.
   func decaffeinate() {
-    // Bail out in case there isn't any caffeinate task.
+    // Bail out in case there is no task running.
     guard let caffeine = caffeine else {
       return
     }
@@ -72,9 +72,9 @@ class CaffeineController {
                                     object: nil)
   }
 
-  /// Creates and configures a caffeinate Task.
+  /// Creates and configures a caffeinate Task object.
   ///
-  /// - returns: A new, configured and launched caffeinate task.
+  /// - returns: A configured and launched caffeinate task object.
   private func caffeinateTask() -> Task? {
     // Create a new task object.
     let caffeinate = Task()

@@ -28,7 +28,7 @@
 import Cocoa
 
 /// Main Controller for Espresso.
-class ApplicationController: NSObject {
+final class ApplicationController: NSObject {
   /// Holds a reference to the status bar item.
   var statusItem: NSStatusItem!
   /// Manages the caffeine task.
@@ -36,6 +36,8 @@ class ApplicationController: NSObject {
 
   /// Holds a weak reference to the menu item.
   @IBOutlet weak var menu: NSMenu!
+
+  // MARK: - Methods
 
   /// Initialize the application controller.
   override init() {
@@ -50,7 +52,7 @@ class ApplicationController: NSObject {
                                            object: nil)
   }
 
-  /// Do some setup work when launching the app.
+  /// Do some setup work while the application launches.
   override func awakeFromNib() {
     // Get user defaults.
     let prefs = PreferenceManager()
@@ -72,42 +74,6 @@ class ApplicationController: NSObject {
     }
   }
 
-  /// Configure the status bar item.
-  func configureStatusItem() -> NSStatusItem? {
-    // Get a status bar item of variable length.
-    let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
-    // Get the status item's button.
-    guard let btn = statusItem.button else {
-      return nil
-    }
-    // Set the button's image.
-    btn.image = NSImage(named: "Cup")
-    btn.image?.isTemplate = true
-
-    // Set the button's properties.
-    btn.target = self
-    btn.action = #selector(ApplicationController.toggleStatus)
-    btn.appearsDisabled = true
-
-    // Set the statusItem property.
-    return statusItem
-  }
-
-  /// Display the app menu.
-  ///
-  /// - parameter sender: Status bar button that sends the action.
-  func displayMenu(_ sender: NSStatusBarButton) {
-    guard let itm = statusItem else {
-      return
-    }
-    // Highlight the status bar item while the menu is open.
-    sender.isHighlighted = true
-    // Display the app menu.
-    statusItem.popUpMenu(menu)
-    // Set highlighted to false when the application menu closes.
-    sender.isHighlighted = false
-  }
-
   /// Either terminates or launches a caffeinate task, depending
   /// on whether a task is already running.
   func toggleStatus() {
@@ -118,9 +84,51 @@ class ApplicationController: NSObject {
     }
   }
 
+  // MARK: - Private
+
+  /// Configures the status bar item.
+  ///
+  /// returns: The configured status bar item.
+  private func configureStatusItem() -> NSStatusItem? {
+    // Get a status bar item of variable length.
+    let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    // Get the status item's button.
+    guard let btn = statusItem.button else {
+      return nil
+    }
+    // Set the button's image.
+    btn.image = NSImage(named: "Cup")
+
+    // Set the button's properties.
+    btn.target = self
+    btn.action = #selector(ApplicationController.toggleStatus)
+    btn.appearsDisabled = true
+
+    // Listen for right click events to open the application menu.
+    NSEvent.addLocalMonitorForEvents(matching: .rightMouseUp, handler: { (incomingEvent: NSEvent) -> NSEvent? in
+      self.displayMenu(btn)
+      return incomingEvent
+    })
+    return statusItem
+  }
+
+  /// Displays the application menu.
+  ///
+  /// - parameter sender: Status bar button that sent the action.
+  private func displayMenu(_ sender: NSStatusBarButton) {
+    // Highlight the status bar item while the menu is open.
+    sender.isHighlighted = true
+    // Display the app menu.
+    statusItem?.popUpMenu(menu)
+    // Set highlighted to false when the application menu closes.
+    sender.isHighlighted = false
+  }
+
+  // MARK: - Actions
+
   /// Terminates Espresso.
   ///
-  /// - parameter sender: Object that wants Espresso to quit
+  /// - parameter sender: Object that sent the message.
   @IBAction func terminate(_ sender: AnyObject) {
     // Terminate the caffeinate task, in case we're running any.
     if caffeine.active {
