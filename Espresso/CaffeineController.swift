@@ -67,9 +67,9 @@ class CaffeineController {
   /// Toggle the caffeinate task status.
   func toggle() {
     if active {
-      caffeinate()
-    } else {
       decaffeinate()
+    } else {
+      caffeinate()
     }
   }
 
