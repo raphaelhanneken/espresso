@@ -64,15 +64,6 @@ class CaffeineController {
                                     object: nil)
   }
 
-  /// Toggle the caffeinate task status.
-  func toggle() {
-    if active {
-      decaffeinate()
-    } else {
-      caffeinate()
-    }
-  }
-
   /// Creates and configures a caffeinate Task.
   ///
   /// - returns: A new, configured and launched caffeinate task.
