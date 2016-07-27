@@ -57,21 +57,9 @@ class AppController: NSObject {
   /// Do some setup work when launching the app.
   override func awakeFromNib() {
     // Init the PreferenceManager to get the user defaults.
-    let prefManager = PreferenceManager()
-    // Set the menu items to the state, choosen by the user.
-    activateOnLaunch.state = prefManager.activateOnLaunch
-
-    if LoginHelper.willLaunchAtLogin(Bundle.main.bundleURL) {
-      launchAtLogin.state = NSOnState
-    } else {
-      launchAtLogin.state = NSOffState
-    }
-
-    // If activate on launch is set, spawn a caffeinate task.
-    if activateOnLaunch.state == NSOnState {
-      if let button = statusItem.button {
-        toggleStatus(button)
-      }
+    let prefs = PreferenceManager()
+    if prefs.activateOnLaunch {
+      toggleStatus(nil)
     }
   }
 
@@ -132,7 +120,10 @@ class AppController: NSObject {
   /// on whether a task is already running.
   ///
   /// - parameter sender: Status bar button that sends the action.
-  func toggleStatus(_ sender: NSStatusBarButton) {
+  func toggleStatus(_ sender: NSStatusBarButton?) {
+    guard let sender = sender else {
+      return
+    }
     // Check wether a caffeinate task is already
     // running or not
     if caffeinate.isRunning() {
@@ -156,11 +147,6 @@ class AppController: NSObject {
     if let caffeinate = self.caffeinate {
       caffeinate.terminate()
     }
-
-    // Init the PreferenceManager to save the user defaults.
-    let prefManager = PreferenceManager()
-    // Save the new state to the user defaults
-    prefManager.activateOnLaunch = activateOnLaunch.state
 
     // Send the terminate message.
     NSApplication.shared().terminate(self)

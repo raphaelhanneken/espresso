@@ -88,9 +88,9 @@
 			children = (
 				8E9EAD4F1B7CEA7C006FE53F /* AppDelegate.swift */,
 				8E20A5DD1B7DFAA0006819C8 /* AppController.swift */,
-				8E20A5E11B7E002C006819C8 /* LoginHelper.swift */,
-				8E20A5E31B7E004A006819C8 /* PreferenceManager.swift */,
 				8E20A5E51B7E09E8006819C8 /* CaffeinateController.swift */,
+				8E20A5E31B7E004A006819C8 /* PreferenceManager.swift */,
+				8E20A5E11B7E002C006819C8 /* LoginHelper.swift */,
 				8E9EAD5D1B7CEABC006FE53F /* UI */,
 				8E9EAD5C1B7CEAAF006FE53F /* Resources */,
 			);

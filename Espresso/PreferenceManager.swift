@@ -39,9 +39,8 @@ class PreferenceManager {
   private let userDefaults = UserDefaults.standard
 
   /// Determines wether to activate a caffeinate task at launch or not.
-  var activateOnLaunch: Int {
-    get { return userDefaults.integer(forKey: activateOnLaunchKey) }
-    set(newValue) { userDefaults.set(newValue, forKey: activateOnLaunchKey) }
+  var activateOnLaunch: Bool {
+    return userDefaults.bool(forKey: activateOnLaunchKey)
   }
 
 
@@ -52,7 +51,6 @@ class PreferenceManager {
   /// Register the default preferences
   private func registerDefaultPreferences() {
     // Disable activateOnLaunch
-    let defaults = [activateOnLaunchKey: 0]
-    userDefaults.register(defaults)
+    userDefaults.register([activateOnLaunchKey: false])
   }
 }
