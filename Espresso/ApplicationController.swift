@@ -28,7 +28,7 @@
 import Cocoa
 
 /// Main Controller for Espresso.
-class AppController: NSObject {
+class ApplicationController: NSObject {
   /// Holds the status bar item.
   var statusItem: NSStatusItem!
   /// Manages the caffeinate task.
@@ -45,7 +45,7 @@ class AppController: NSObject {
     // Configure the status bar item.
     configureStatusItem()
     // Listen for Caffeine notifications.
-    NotificationCenter.default.addObserver(self, selector: #selector(AppController.toggleButtonState),
+    NotificationCenter.default.addObserver(self, selector: #selector(ApplicationController.toggleButtonState),
                                            name: Notification.Name(caffeineTaskStatusChangedNotificationKey),
                                            object: nil)
   }
@@ -91,7 +91,7 @@ class AppController: NSObject {
       // Define the target of the click actions.
       statusBtn.target = self
       // Define the left click action.
-      statusBtn.action = #selector(AppController.toggleStatus)
+      statusBtn.action = #selector(ApplicationController.toggleStatus)
       // Set the status items button to appear disabled
       // (transculant appearance)
       statusBtn.appearsDisabled = true
