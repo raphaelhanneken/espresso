@@ -148,42 +148,6 @@ class AppController: NSObject {
     }
   }
 
-  /// Toggles the state of sender.
-  ///
-  /// - parameter sender: Menu item to toggle the state.
-  func toggleMenuItemState(_ sender: NSMenuItem) {
-    if sender.state == NSOnState {
-      sender.state = NSOffState
-    } else {
-      sender.state = NSOnState
-    }
-  }
-
-  /// Let Espresso launch when the user logs in.
-  ///
-  /// - parameter sender: Menu item that sends the action.
-  @IBAction func launchAtLogin(_ sender: NSMenuItem) {
-    // Get the bundle url.
-    let bundleURL = Bundle.main.bundleURL
-    do {
-      // Toggle the launch at login state.
-      try LoginHelper.toggleLaunchAtLogin(bundleURL)
-      // Toggle the menu item state
-      toggleMenuItemState(sender)
-    } catch {
-      print(error)
-    }
-  }
-
-  /// Let Espresso spawn a new caffeinate task as soon as
-  /// it launches.
-  ///
-  /// - parameter sender: Menu item that sends the action.
-  @IBAction func activateOnLaunch(_ sender: NSMenuItem) {
-    // Toggle the menu item state
-    toggleMenuItemState(sender)
-  }
-
   /// Terminates Espresso.
   ///
   /// - parameter sender: Object that wants Espresso to quit
