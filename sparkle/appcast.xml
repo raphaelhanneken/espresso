@@ -7,23 +7,24 @@
         <language>en</language>
 
         <item>
-          <title>Espresso v1.2.1</title>
+          <title>Espresso v1.2.2</title>
           <description>
             <![CDATA[
             <ul>
               <li>Fixed a bug with 'Launch at Login'</li>
-              <li>Various minor improvements</li>
+              <li>Updated Sparkle Framework</li>
+              <li>Minor changes and improvements</li>
             </ul>
             ]]>
           </description>
-          <pubDate>Fri, 29 Jul 2016 12:00:00 +0100</pubDate>
+          <pubDate>Fri, 29 Jul 2016 16:00:00 +0100</pubDate>
           <sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
           <enclosure
-            url="https://github.com/raphaelhanneken/espresso/releases/download/1.2.1/Espresso.dmg"
-            sparkle:version="65"
-            sparkle:shortVersionString="1.2.1"
-            sparkle:dsaSignature="MC0CFCHsNptAq4If2TTRkfsBrdkaJUmkAhUAgsJJdQ7kMsiXpi345XzGqxZGZoI="
-            length="6422967"
+            url="https://github.com/raphaelhanneken/espresso/releases/download/1.2.2/Espresso.dmg"
+            sparkle:version="71"
+            sparkle:shortVersionString="1.2.2"
+            sparkle:dsaSignature="MCwCFEYjskCv04FGpeMe+A3Qj8x2NZjIAhRp9IJbv7mMmhp/INpMcDZrVPFuDQ=="
+            length="6751761"
             type="application/octet-stream" />
         </item>
 
