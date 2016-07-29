@@ -15,7 +15,23 @@
 		8E9EAD501B7CEA7C006FE53F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9EAD4F1B7CEA7C006FE53F /* AppDelegate.swift */; };
 		8E9EAD551B7CEA7C006FE53F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E9EAD531B7CEA7C006FE53F /* MainMenu.xib */; };
 		8E9EAD5F1B7CEAEC006FE53F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E9EAD5E1B7CEAEC006FE53F /* Assets.xcassets */; };
+		8ED1F2C71D4BA0E90094CBC1 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED1F2C61D4BA0E90094CBC1 /* Sparkle.framework */; };
+		8ED1F2C81D4BA0E90094CBC1 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED1F2C61D4BA0E90094CBC1 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8ED1F2C91D4BA0E90094CBC1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8ED1F2C81D4BA0E90094CBC1 /* Sparkle.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8E20A5DD1B7DFAA0006819C8 /* ApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
@@ -28,6 +44,7 @@
 		8E9EAD541B7CEA7C006FE53F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8E9EAD561B7CEA7C006FE53F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E9EAD5E1B7CEAEC006FE53F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8ED1F2C61D4BA0E90094CBC1 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ED1F2C71D4BA0E90094CBC1 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +62,7 @@
 		8E495B6F1B7FF44F00A93A46 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8ED1F2C61D4BA0E90094CBC1 /* Sparkle.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -108,6 +127,7 @@
 				8E9EAD491B7CEA7C006FE53F /* Frameworks */,
 				8E9EAD4A1B7CEA7C006FE53F /* Resources */,
 				8E99142C1C2294CD00FB86ED /* ShellScript */,
+				8ED1F2C91D4BA0E90094CBC1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -295,6 +315,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Espresso/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -313,6 +334,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Espresso/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
