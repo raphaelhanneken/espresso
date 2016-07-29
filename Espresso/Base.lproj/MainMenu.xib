@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11163.2" systemVersion="16A238m" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11163.2" systemVersion="16A254g" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11163.2"/>
     </dependencies>
@@ -640,13 +640,13 @@
                 <menuItem title="Launch at Login" id="A9v-mD-elq">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="launchAtLogin:" target="jj3-24-S6W" id="W3X-Zp-YjO"/>
+                        <action selector="toggleLaunchAtLogin:" target="jj3-24-S6W" id="grf-GB-d5t"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Activate on Launch" id="8h1-9l-ls7">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="activateOnLaunch:" target="jj3-24-S6W" id="7vu-5q-fdu"/>
+                        <binding destination="JWS-0L-h4Z" name="value" keyPath="values.ActivateOnLaunch" id="cOP-cn-4EH"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="N5X-SA-Oor"/>
@@ -665,13 +665,13 @@
             </items>
             <point key="canvasLocation" x="-102" y="160"/>
         </menu>
-        <customObject id="jj3-24-S6W" customClass="AppController" customModule="Espresso" customModuleProvider="target">
+        <customObject id="jj3-24-S6W" customClass="ApplicationController" customModule="Espresso" customModuleProvider="target">
             <connections>
-                <outlet property="activateOnLaunch" destination="8h1-9l-ls7" id="rg8-t7-AuN"/>
-                <outlet property="launchAtLogin" destination="A9v-mD-elq" id="jnD-Ig-eKp"/>
+                <outlet property="launchAtLogin" destination="A9v-mD-elq" id="c4j-Fc-dtB"/>
                 <outlet property="menu" destination="q9G-xO-h4p" id="WLm-uL-SVb"/>
             </connections>
         </customObject>
         <customObject id="SsA-6b-a5w" customClass="SUUpdater"/>
+        <userDefaultsController representsSharedInstance="YES" id="JWS-0L-h4Z"/>
     </objects>
 </document>

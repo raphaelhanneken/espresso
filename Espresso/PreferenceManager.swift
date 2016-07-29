@@ -27,32 +27,30 @@
 
 import Foundation
 
-/// Constant for the LaunchAtLogin property.
+/// Key for the LaunchAtLogin preference.
 private let launchAtLoginKey    = "LaunchAtLogin"
-/// Constant for the ActivateOnLaunch property.
+/// Key for the ActivateOnLaunch preference.
 private let activateOnLaunchKey = "ActivateOnLaunch"
 
 
-/// Manages the user defaults for Espresso
-class PreferenceManager {
-  /// Holds the user defaults.
+/// Manages the user defaults for Espresso.
+final class PreferenceManager {
+  /// Holds a reference to the user defaults.
   private let userDefaults = UserDefaults.standard
 
-  /// Determines wether to activate a caffeinate task at launch or not.
-  var activateOnLaunch: Int {
-    get { return userDefaults.integer(forKey: activateOnLaunchKey) }
-    set(newValue) { userDefaults.set(newValue, forKey: activateOnLaunchKey) }
+  /// Determines wether to activate a caffeinate task at launch.
+  var activateOnLaunch: Bool {
+    return userDefaults.bool(forKey: activateOnLaunchKey)
   }
 
-
+  /// Initialize a PreferenceManager object.
   init() {
     registerDefaultPreferences()
   }
 
-  /// Register the default preferences
+  /// Register the default preferences.
   private func registerDefaultPreferences() {
-    // Disable activateOnLaunch
-    let defaults = [activateOnLaunchKey: 0]
-    userDefaults.register(defaults)
+    // Disable activateOnLaunch by default.
+    userDefaults.register([activateOnLaunchKey: false])
   }
 }

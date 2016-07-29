@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E20A5DE1B7DFAA0006819C8 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E20A5DD1B7DFAA0006819C8 /* AppController.swift */; };
+		8E20A5DE1B7DFAA0006819C8 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E20A5DD1B7DFAA0006819C8 /* ApplicationController.swift */; };
 		8E20A5E21B7E002C006819C8 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E20A5E11B7E002C006819C8 /* LoginHelper.swift */; };
 		8E20A5E41B7E004A006819C8 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E20A5E31B7E004A006819C8 /* PreferenceManager.swift */; };
-		8E20A5E61B7E09E8006819C8 /* CaffeinateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E20A5E51B7E09E8006819C8 /* CaffeinateController.swift */; };
+		8E20A5E61B7E09E8006819C8 /* CaffeineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E20A5E51B7E09E8006819C8 /* CaffeineController.swift */; };
 		8E495B711B7FF46200A93A46 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E495B701B7FF46200A93A46 /* Sparkle.framework */; };
 		8E495B731B7FF47700A93A46 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8E495B701B7FF46200A93A46 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8E495B751B7FF6AA00A93A46 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 8E495B741B7FF6AA00A93A46 /* dsa_pub.pem */; };
@@ -33,10 +33,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8E20A5DD1B7DFAA0006819C8 /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		8E20A5DD1B7DFAA0006819C8 /* ApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
 		8E20A5E11B7E002C006819C8 /* LoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		8E20A5E31B7E004A006819C8 /* PreferenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
-		8E20A5E51B7E09E8006819C8 /* CaffeinateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaffeinateController.swift; sourceTree = "<group>"; };
+		8E20A5E51B7E09E8006819C8 /* CaffeineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaffeineController.swift; sourceTree = "<group>"; };
 		8E495B701B7FF46200A93A46 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		8E495B741B7FF6AA00A93A46 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		8E9EAD4C1B7CEA7C006FE53F /* Espresso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Espresso.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,10 +87,10 @@
 			isa = PBXGroup;
 			children = (
 				8E9EAD4F1B7CEA7C006FE53F /* AppDelegate.swift */,
-				8E20A5DD1B7DFAA0006819C8 /* AppController.swift */,
-				8E20A5E11B7E002C006819C8 /* LoginHelper.swift */,
+				8E20A5DD1B7DFAA0006819C8 /* ApplicationController.swift */,
+				8E20A5E51B7E09E8006819C8 /* CaffeineController.swift */,
 				8E20A5E31B7E004A006819C8 /* PreferenceManager.swift */,
-				8E20A5E51B7E09E8006819C8 /* CaffeinateController.swift */,
+				8E20A5E11B7E002C006819C8 /* LoginHelper.swift */,
 				8E9EAD5D1B7CEABC006FE53F /* UI */,
 				8E9EAD5C1B7CEAAF006FE53F /* Resources */,
 			);
@@ -206,9 +206,9 @@
 			files = (
 				8E20A5E41B7E004A006819C8 /* PreferenceManager.swift in Sources */,
 				8E9EAD501B7CEA7C006FE53F /* AppDelegate.swift in Sources */,
-				8E20A5DE1B7DFAA0006819C8 /* AppController.swift in Sources */,
+				8E20A5DE1B7DFAA0006819C8 /* ApplicationController.swift in Sources */,
 				8E20A5E21B7E002C006819C8 /* LoginHelper.swift in Sources */,
-				8E20A5E61B7E09E8006819C8 /* CaffeinateController.swift in Sources */,
+				8E20A5E61B7E09E8006819C8 /* CaffeineController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
