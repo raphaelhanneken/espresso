@@ -22,7 +22,7 @@
             url="https://github.com/raphaelhanneken/espresso/releases/download/1.2.1/Espresso.dmg"
             sparkle:version="65"
             sparkle:shortVersionString="1.2.1"
-            sparkle:dsaSignature="MC4CFQCQsfdhJqJcPlPii56eX5k6tzjGCAIVAInzlfCS9GMG5LIru+3pwJ/vObM/"
+            sparkle:dsaSignature="MC0CFCHsNptAq4If2TTRkfsBrdkaJUmkAhUAgsJJdQ7kMsiXpi345XzGqxZGZoI="
             length="6422967"
             type="application/octet-stream" />
         </item>
