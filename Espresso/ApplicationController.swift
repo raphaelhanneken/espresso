@@ -60,7 +60,7 @@ final class ApplicationController: NSObject {
     let prefs = PreferenceManager()
     // Check whether the user wants to launch caffeinate automatically.
     if prefs.activateOnLaunch {
-      toggleStatus()
+      caffeine.caffeinate()
     }
     if LoginHelper.willLaunchAtLogin(Bundle.main.bundleURL) {
       launchAtLogin.state = NSOnState
