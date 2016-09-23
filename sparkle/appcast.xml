@@ -7,6 +7,24 @@
         <language>en</language>
 
         <item>
+          <title>Espresso v1.2.3</title>
+          <description>
+            <![CDATA[
+            <p>Ready for macOS Sierra.</p>
+            ]]>
+          </description>
+          <pubDate>Fri, 23 Sep 2016 19:00:00 +0100</pubDate>
+          <sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
+          <enclosure
+            url="https://github.com/raphaelhanneken/espresso/releases/download/1.2.3/Espresso.dmg"
+            sparkle:version="74"
+            sparkle:shortVersionString="1.2.3"
+            sparkle:dsaSignature="MC0CFBFr1NbHpnustogGjPleAsnwCp/ZAhUAkESDyK1XSi+h2HhEgw4eKByWDv0="
+            length="6150700"
+            type="application/octet-stream" />
+        </item>
+
+        <item>
           <title>Espresso v1.2.2</title>
           <description>
             <![CDATA[
