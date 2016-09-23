@@ -51,6 +51,6 @@ final class PreferenceManager {
   /// Register the default preferences.
   private func registerDefaultPreferences() {
     // Disable activateOnLaunch by default.
-    userDefaults.register([activateOnLaunchKey: false])
+    userDefaults.register(defaults: [activateOnLaunchKey: false])
   }
 }

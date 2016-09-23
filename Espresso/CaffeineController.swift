@@ -33,7 +33,7 @@ let caffeineTaskStatusChangedNotificationKey = "io.raphaelhanneken.espresso.caff
 /// Manages the caffeinate task.
 final class CaffeineController {
   /// Holds a reference to the caffeinate task.
-  private var caffeine: Task?
+  private var caffeine: Process?
 
   /// Checks whether a caffeinate task is currently running.
   var active: Bool {
@@ -75,9 +75,9 @@ final class CaffeineController {
   /// Creates and configures a caffeinate Task object.
   ///
   /// - returns: A configured and launched caffeinate task object.
-  private func caffeinateTask() -> Task? {
+  private func caffeinateTask() -> Process? {
     // Create a new task object.
-    let caffeinate = Task()
+    let caffeinate = Process()
     // Set the task's properties and launch it.
     caffeinate.launchPath = "/usr/bin/caffeinate"
     caffeinate.arguments  = ["-diu"]
