@@ -46,7 +46,7 @@ final class CaffeineController {
   /// Launches a new Caffeinate task.
   func caffeinate() {
     // Check that there isn't already a caffeine task running.
-    if let _ = caffeine {
+    if caffeine != nil {
       return
     }
     // Create and launch a new task.

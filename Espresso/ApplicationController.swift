@@ -62,9 +62,6 @@ final class ApplicationController: NSObject {
     if prefs.activateOnLaunch {
       caffeine.caffeinate()
     }
-    if LoginHelper.willLaunchAtLogin(Bundle.main.bundleURL) {
-      launchAtLogin.state = NSOnState
-    }
   }
 
   /// Toggles the status bar button's appearsDisabled property.
@@ -130,17 +127,6 @@ final class ApplicationController: NSObject {
   }
 
   // MARK: - Actions
-
-  @IBAction func toggleLaunchAtLogin(_ sender: AnyObject) {
-    // Toggle the Launch at Login state.
-    LoginHelper.toggleLaunchAtLogin(Bundle.main.bundleURL)
-    // Check whether the user has enabled Launch at Login.
-    if LoginHelper.willLaunchAtLogin(Bundle.main.bundleURL) {
-      launchAtLogin.state = NSOnState
-    } else {
-      launchAtLogin.state = NSOffState
-    }
-  }
 
   /// Terminates Espresso.
   ///

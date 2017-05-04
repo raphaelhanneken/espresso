@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8E20A5DE1B7DFAA0006819C8 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E20A5DD1B7DFAA0006819C8 /* ApplicationController.swift */; };
-		8E20A5E21B7E002C006819C8 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E20A5E11B7E002C006819C8 /* LoginHelper.swift */; };
 		8E20A5E41B7E004A006819C8 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E20A5E31B7E004A006819C8 /* PreferenceManager.swift */; };
 		8E20A5E61B7E09E8006819C8 /* CaffeineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E20A5E51B7E09E8006819C8 /* CaffeineController.swift */; };
 		8E495B751B7FF6AA00A93A46 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 8E495B741B7FF6AA00A93A46 /* dsa_pub.pem */; };
@@ -101,9 +100,9 @@
 		8E9EAD5C1B7CEAAF006FE53F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8E9EAD5E1B7CEAEC006FE53F /* Assets.xcassets */,
 				8E9EAD561B7CEA7C006FE53F /* Info.plist */,
 				8E495B741B7FF6AA00A93A46 /* dsa_pub.pem */,
+				8E9EAD5E1B7CEAEC006FE53F /* Assets.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -208,7 +207,6 @@
 				8E20A5E41B7E004A006819C8 /* PreferenceManager.swift in Sources */,
 				8E9EAD501B7CEA7C006FE53F /* AppDelegate.swift in Sources */,
 				8E20A5DE1B7DFAA0006819C8 /* ApplicationController.swift in Sources */,
-				8E20A5E21B7E002C006819C8 /* LoginHelper.swift in Sources */,
 				8E20A5E61B7E09E8006819C8 /* CaffeineController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,7 +244,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -292,7 +290,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -323,6 +321,7 @@
 				);
 				INFOPLIST_FILE = Espresso/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = "-Wl,-rpath,@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.raphaelhanneken.espresso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -342,6 +341,7 @@
 				);
 				INFOPLIST_FILE = Espresso/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = "-Wl,-rpath,@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.raphaelhanneken.espresso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
