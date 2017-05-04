@@ -1,5 +1,4 @@
-line_length: 115
-cyclomatic_complexity: 12
+line_length: 120
 
 excluded:
   - Carthage
