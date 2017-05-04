@@ -5,7 +5,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Raphael Hanneken
+// Copyright (c) 2015 - 2017 Raphael Hanneken
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,25 +32,24 @@ private let launchAtLoginKey    = "LaunchAtLogin"
 /// Key for the ActivateOnLaunch preference.
 private let activateOnLaunchKey = "ActivateOnLaunch"
 
-
 /// Manages the user defaults for Espresso.
 final class PreferenceManager {
-  /// Holds a reference to the user defaults.
-  private let userDefaults = UserDefaults.standard
+    /// Holds a reference to the user defaults.
+    private let userDefaults = UserDefaults.standard
 
-  /// Determines wether to activate a caffeinate task at launch.
-  var activateOnLaunch: Bool {
-    return userDefaults.bool(forKey: activateOnLaunchKey)
-  }
+    /// Determines wether to activate a caffeinate task at launch.
+    var activateOnLaunch: Bool {
+        return userDefaults.bool(forKey: activateOnLaunchKey)
+    }
 
-  /// Initialize a PreferenceManager object.
-  init() {
-    registerDefaultPreferences()
-  }
+    /// Initialize a PreferenceManager object.
+    init() {
+        registerDefaultPreferences()
+    }
 
-  /// Register the default preferences.
-  private func registerDefaultPreferences() {
-    // Disable activateOnLaunch by default.
-    userDefaults.register(defaults: [activateOnLaunchKey: false])
-  }
+    /// Register the default preferences.
+    private func registerDefaultPreferences() {
+        // Disable activateOnLaunch by default.
+        userDefaults.register(defaults: [activateOnLaunchKey: false])
+    }
 }

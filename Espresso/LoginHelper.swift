@@ -5,7 +5,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Raphael Hanneken
+// Copyright (c) 2015 - 2017 Raphael Hanneken
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,70 +27,69 @@
 
 import Foundation
 
-
 /// Manages Launch at Login
 final class LoginHelper {
 
-  ///  Checks whether the supplied bundle will launch at login.
-  ///
-  ///  - parameter itemURL: Bundle url.
-  ///  - returns: true, when the supplied bundle launes at login otherwise false.
-  static func willLaunchAtLogin(_ itemURL: URL) -> Bool {
-    return (findItem(itemURL) != nil)
-  }
-
-  ///  Removes or adds the given bundle from/to the login items list.
-  ///
-  ///  - parameter itemURL: The Bundle url.
-  ///  - throws:            A LoginHelperError.gettingLoginItemsFailed exception.
-  static func toggleLaunchAtLogin(_ itemURL: URL) {
-    guard let loginItems = getLoginItems() else {
-      return
+    ///  Checks whether the supplied bundle will launch at login.
+    ///
+    ///  - parameter itemURL: Bundle url.
+    ///  - returns: true, when the supplied bundle launes at login otherwise false.
+    static func willLaunchAtLogin(_ itemURL: URL) -> Bool {
+        return (findItem(itemURL) != nil)
     }
 
-    if let item = findItem(itemURL) {
-      LSSharedFileListItemRemove(loginItems, item)
-    } else {
-      LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst.takeUnretainedValue(), nil, nil,
-                                    itemURL as CFURL, nil, nil)
-    }
-  }
+    ///  Removes or adds the given bundle from/to the login items list.
+    ///
+    ///  - parameter itemURL: The Bundle url.
+    ///  - throws:            A LoginHelperError.gettingLoginItemsFailed exception.
+    static func toggleLaunchAtLogin(_ itemURL: URL) {
+        guard let loginItems = getLoginItems() else {
+            return
+        }
 
-  /// Gets the login items of the current user.
-  ///
-  /// - returns: The login items of the current user.
-  private static func getLoginItems() -> LSSharedFileList? {
-    let allocator   = CFAllocatorGetDefault().takeUnretainedValue()
-    let kLoginItems = kLSSharedFileListSessionLoginItems.takeUnretainedValue()
-
-    guard let loginItems = LSSharedFileListCreate(allocator, kLoginItems, nil) else {
-      return nil
+        if let item = findItem(itemURL) {
+            LSSharedFileListItemRemove(loginItems, item)
+        } else {
+            LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst.takeUnretainedValue(), nil, nil,
+                                          itemURL as CFURL, nil, nil)
+        }
     }
 
-    return loginItems.takeRetainedValue()
-  }
+    /// Gets the login items of the current user.
+    ///
+    /// - returns: The login items of the current user.
+    private static func getLoginItems() -> LSSharedFileList? {
+        let allocator   = CFAllocatorGetDefault().takeUnretainedValue()
+        let kLoginItems = kLSSharedFileListSessionLoginItems.takeUnretainedValue()
 
-  /// Looks wether or not the given bundle is part of the login item list of the current user.
-  ///
-  /// - parameter itemURL: Bundle url.
-  /// - returns: The list item of the given bundle if found, otherwise nil.
-  private static func findItem(_ itemURL: URL) -> LSSharedFileListItem? {
-    guard let loginItems = getLoginItems() else {
-      return nil
+        guard let loginItems = LSSharedFileListCreate(allocator, kLoginItems, nil) else {
+            return nil
+        }
+
+        return loginItems.takeRetainedValue()
     }
 
-    var seed: UInt32 = 0
-    let currentItems: NSArray = LSSharedFileListCopySnapshot(loginItems, &seed).takeRetainedValue()
-    // swiftlint:disable force_cast
-    for item in currentItems as! [LSSharedFileListItem] {
-    // swiftlint:enable  force_cast
-      let resolutionFlags = UInt32(kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes)
-      let url = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, nil).takeRetainedValue() as URL
+    /// Looks wether or not the given bundle is part of the login item list of the current user.
+    ///
+    /// - parameter itemURL: Bundle url.
+    /// - returns: The list item of the given bundle if found, otherwise nil.
+    private static func findItem(_ itemURL: URL) -> LSSharedFileListItem? {
+        guard let loginItems = getLoginItems() else {
+            return nil
+        }
 
-      if url == itemURL {
-        return item
-      }
+        var seed: UInt32 = 0
+        let currentItems: NSArray = LSSharedFileListCopySnapshot(loginItems, &seed).takeRetainedValue()
+        // swiftlint:disable force_cast
+        for item in currentItems as! [LSSharedFileListItem] {
+            // swiftlint:enable  force_cast
+            let resolutionFlags = UInt32(kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes)
+            let url = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, nil).takeRetainedValue() as URL
+
+            if url == itemURL {
+                return item
+            }
+        }
+        return nil
     }
-    return nil
-  }
 }
